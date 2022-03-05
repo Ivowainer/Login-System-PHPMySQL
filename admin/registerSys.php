@@ -1,6 +1,5 @@
 <?php 
     require './admin/databases.php';
-    
 
     $errores = [];
     $name = '';
