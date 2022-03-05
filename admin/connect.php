@@ -1,6 +1,6 @@
 <?php 
-
-    $db = mysqli_connect('localhost', 'root', '', 'lsystem');
+    require './admin/databases.php';
+    
 
     $errores = [];
     $name = '';
