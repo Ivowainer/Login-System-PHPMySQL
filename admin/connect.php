@@ -1,9 +1,42 @@
 <?php 
 
-    $db = mysqli_connect('localhost', 'root', '', 'lSystem');
+    $db = mysqli_connect('localhost', 'root', '', 'lsystem');
 
-    if($db){
-        echo 'Conn';
+    $errores = [];
+    $name = '';
+    $password = '';
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+    
+        
+
+        /* Validación de formulario */
+        if(strlen($name) < 3){
+            $errores[] = 'El nombre debe tener más de 3 caracteres';
+        }
+        if(strlen($password) < 6){
+            $errores[] = 'La contraseña debe tener más de 6 caracteres';
+        }
+        
+
+        foreach($errores as $error){
+            echo '<div class="alert alert-warning">';
+            echo $error;
+            echo '</div>';
+        }
+
+        //Si no hay errores registrados en el array, se guarda en la base de datos
+        if(empty($errores)){
+            $query = "INSERT INTO login (name, password) 
+            VALUES ('$name', '$password')";
+
+            $resultado = mysqli_query($db, $query);
+
+            if($resultado){
+                header('Location: register.php?message=success');
+            }
+        }
     }
-
 ?>
