@@ -1,9 +1,8 @@
 <?php 
+    session_start();
     $db = mysqli_connect('localhost', 'root', '', 'lsystem');
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        session_start();
-
         $name = $_POST['name'];
         $password = $_POST['password'];
 
@@ -12,12 +11,14 @@
 
 
         /*Validación formulario*/
-
         if($name = mysqli_fetch_assoc($sqlName) and $password = mysqli_fetch_assoc($sqlPass)){
-            echo 'Bienvenido';
+            $_SESSION['User'] = $name;
+
+            if($_SESSION['User']){
+                header('Location: /panels/main.php');
+            }
         }else{
-            echo 'no';
-            
+            header('Location: login.php?error=usernotfound');
         }
     }
 ?>

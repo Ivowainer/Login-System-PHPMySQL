@@ -8,8 +8,6 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $name = $_POST['name'];
         $password = $_POST['password'];
-    
-        
 
         /* Validación de formulario */
         if(strlen($name) < 3){
@@ -17,13 +15,6 @@
         }
         if(strlen($password) < 6){
             $errores[] = 'La contraseña debe tener más de 6 caracteres';
-        }
-        
-
-        foreach($errores as $error){
-            echo '<div class="alert alert-warning">';
-            echo $error;
-            echo '</div>';
         }
 
         //Si no hay errores registrados en el array, se guarda en la base de datos
@@ -34,7 +25,7 @@
             $resultado = mysqli_query($db, $query);
 
             if($resultado){
-                header('Location: register.php?message=success');
+                header('Location: login.php?message=success');
             }
         }
     }

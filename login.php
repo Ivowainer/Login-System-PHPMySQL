@@ -2,6 +2,24 @@
     include 'includes/header.php';
     require 'admin/loginSys.php';
 ?>
+    <div class="container d-flex vh-100 align-items-center justify-content-center flex-column">
+            
+        <!-- Mensajes de alerta -->
+        <?php if(isset($_GET['message']) and $_GET['message'] === 'success'): ?>
+            <div class="alert alert-success">
+                Successful registration
+            </div>
+        <?php endif; ?>
+
+        <?php if(isset($_GET['error']) && $_GET['error'] == 'usernotfound') : ?>
+            <div class="alert alert-warning">
+                <p class="mb-0">Name or Password incorrect</p>
+            </div>  
+        <?php endif; ?>
+
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-header text-center">
                 <p class="fs-5 m-0">Login System</p>
             </div>
             <div class="card-body"> 

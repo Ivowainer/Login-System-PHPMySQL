@@ -2,6 +2,17 @@
     include 'includes/header.php';
     require 'admin/registerSys.php';
 ?>
+<div class="container d-flex vh-100 align-items-center justify-content-center flex-column">
+            <!-- Mensajes de alerta -->
+            <?php 
+            foreach($errores as $error){
+                echo '<div class="alert alert-warning">';
+                echo $error;
+                echo '</div>';
+            }
+            ?>    
+        <div class="card" style="width: 18rem;">
+            <div class="card-header text-center">
                 <p class="fs-5 m-0">Register System</p>
             </div>
             <div class="card-body"> 
